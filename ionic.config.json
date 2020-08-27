@@ -1,0 +1,7 @@
+{
+  "name": "toures-balon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
