@@ -1,0 +1,7 @@
+<ion-grid class="busqueda">
+    <ion-row>
+        <ion-col *ngFor='let dat of cards' size-sm=12 size-md=4>
+        <app-card [information]="dat" ></app-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>

@@ -1,0 +1,30 @@
+[
+    {
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "name": "Mundial de Futbol 2020",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "category": "Fútbol",
+        "price": [123456, 190000]
+    },
+    {
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "name": "Mundial de Futbol 2020",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "category": "Fútbol",
+        "price": [123456, 190000]
+    },
+    {
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "name": "Mundial de Futbol 2020",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "category": "Fútbol",
+        "price": [123456, 190000]
+    },
+    {
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "name": "Mundial de Futbol 2020",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "category": "Fútbol",
+        "price": [123456, 190000]
+    }
+]

@@ -1,0 +1,29 @@
+<ion-card>
+  <img src="{{information.image}}" class="image-url" />
+  <ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm=10 size-md=10>
+          <ion-card-subtitle class="subtitle">{{ information.subtitle.toUpperCase() }}</ion-card-subtitle>
+          <ion-card-title>{{ information.title }}</ion-card-title>
+        </ion-col>
+        <ion-col size-sm=2 size-md=2>
+            <ion-icon name="add-circle-outline" class="add_btn"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        {{ information.detail }}
+      </ion-row>
+      <ion-row class="price">
+        <ion-badge color="light">{{ information.getFullPrice() }}</ion-badge>
+      </ion-row>
+      <ion-row>
+        <ion-button color="primary" size= "small" class="buy_btn">Comprar</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
