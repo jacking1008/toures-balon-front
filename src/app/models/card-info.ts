@@ -2,6 +2,7 @@ import { Url } from 'url';
 import { CurrencyFormat } from '../global/currency-format';
 
 export class CardInfo {
+    id: number;
     image: string;
     category; string;
     title: string;

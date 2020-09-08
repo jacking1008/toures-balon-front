@@ -1,0 +1,82 @@
+<ion-grid class="busqueda">
+  <ion-row>
+      <ion-col size-sm=12 size-md=6 class="image_info">
+        <img src="https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg" class="image_item" />
+        <ion-button color="light" size="small" (click)="presentModal()">Ver Mapa de Localidades</ion-button>
+      </ion-col>
+      <ion-col size-sm=12 size-md=6>
+        <ion-list inset=true lines="none">
+          <ion-list-header color="primary" class="title_info">
+            <ion-label class="title_des">{{ detail.name }}</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-icon name="pin-outline" slot="start"></ion-icon>
+            <ion-label>Lugar: </ion-label>
+            {{ detail.place }}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="map-outline" slot="start"></ion-icon>
+            <ion-label>Ciudad: </ion-label>
+            {{ detail.city }}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>Fecha: </ion-label>
+            {{ detail.date }}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            <ion-label>Hora: </ion-label>
+            {{ detail.date }}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="copy-outline" slot="start"></ion-icon>
+            <ion-label>Categoría: </ion-label>
+            {{ detail.category }}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="people-circle-outline" slot="start"></ion-icon>
+            <ion-label>Aforo: </ion-label>
+            {{ detail.capacity }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+  </ion-row>
+  <ion-card>
+    <ion-row class="box_buy">
+      <ion-col size-sm=12 size-md=3>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Localidad:</ion-label>
+            <ion-select class="input_data" (ionChange)="onSelectChange($event)">
+              <ion-select-option *ngFor="let key of detail.localities" value="{{key.id}}">{{ key.name }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size-sm=12 size-md=3>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Valor:</ion-label>
+            <ion-input value="{{localidad.price}}" class="input_data" readonly></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size-sm=12 size-md=3>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Cantidad:</ion-label>
+            <ion-input value="" class="input_data"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size-sm=12 size-md=3>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-button color="primary" size="default" style="width: 100%;">Comprar</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-grid>

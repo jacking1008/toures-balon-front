@@ -1,0 +1,34 @@
+{
+    "id": 1,
+    "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+    "imageLocalities": "https://2.bp.blogspot.com/-YcopooG4e_o/VC2catP_FOI/AAAAAAAACow/zq8skqYQtRI/s1600/foo.jpg",
+    "name": "Mundial de Futbol 2020",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "place": "Coliseo El Campín",
+    "city": "Bogotá D.C",
+    "date": "20 de Septiembre del 2019",
+    "category": "Fútbol",
+    "capacity": 500,
+    "localities": [
+        {
+            "id": 0,
+            "name": "Norte",
+            "price": 200000
+        },
+        {
+            "id": 1,
+            "name": "Sur",
+            "price": 100000
+        },
+        {
+            "id": 2,
+            "name": "Occidental",
+            "price": 300000
+        },
+        {
+            "id": 3,
+            "name": "Oriental",
+            "price": 300000
+        }
+    ]
+}

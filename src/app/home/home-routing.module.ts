@@ -26,12 +26,16 @@ const routes: Routes = [
       {
         path: 'cart',
         loadChildren: '../plans/plans.module#PlansPageModule'
+      },
+      {
+        path: 'detail/:type/:id',
+        loadChildren: () => import('../detail/detail.module').then( m => m.DetailPageModule)
       }
     ]
   },
   {
     path: '',
-    redirectTo: 'plan',
+    redirectTo: 'home/event',
     pathMatch: 'full'
   }
 ];
