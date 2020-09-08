@@ -22,7 +22,7 @@
         <ion-badge color="light">{{ information.getFullPrice() }}</ion-badge>
       </ion-row>
       <ion-row>
-        <ion-button color="primary" size= "small" class="buy_btn">Comprar</ion-button>
+        <ion-button color="primary" size= "small" class="buy_btn" routerLink="/home/detail/{{information.category}}/{{information.id}}">VER DETALLE</ion-button>
       </ion-row>
     </ion-grid>
   </ion-card-content>
