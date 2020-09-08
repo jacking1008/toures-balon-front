@@ -44,4 +44,15 @@ export class DetailPage implements OnInit {
     this.localidad = this.detail.localities.find( e => e.id == selectedValue.target.value);
   }
 
+  getDate(){
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let dTemp = new Date(this.detail.date);
+    return dTemp != undefined ? dTemp.toLocaleDateString("es-CO",options) : "";
+  }
+
+  getHours(){
+    let dTemp = new Date(this.detail.date);
+    return dTemp != undefined ? dTemp.getHours() + ":" + dTemp.getMinutes() : "";
+  }
+
 }
