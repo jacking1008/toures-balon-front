@@ -5,6 +5,7 @@ import { ShowService } from '../services/show.service';
 import { ActivatedRoute } from '@angular/router';
 import { DetailShow } from '../models/detail-show';
 import { Locality } from '../models/locality';
+import { CurrencyFormat } from '../global/currency-format';
 
 @Component({
   selector: 'app-detail',
@@ -53,6 +54,10 @@ export class DetailPage implements OnInit {
   getHours(){
     let dTemp = new Date(this.detail.date);
     return dTemp != undefined ? dTemp.getHours() + ":" + dTemp.getMinutes() : "";
+  }
+
+  getFormattedPrice(){
+    return this.localidad.price != undefined ? CurrencyFormat.convertFormatting('USD', this.localidad.price) : "";
   }
 
 }

@@ -1,7 +1,7 @@
 <ion-grid class="busqueda">
   <ion-row>
       <ion-col size-sm=12 size-md=6 class="image_info">
-        <img src="https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg" class="image_item" />
+        <img src="{{ detail.image }}" class="image_item" />
         <ion-button color="light" size="small" (click)="presentModal()">Ver Mapa de Localidades</ion-button>
       </ion-col>
       <ion-col size-sm=12 size-md=6>
@@ -58,7 +58,7 @@
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Valor:</ion-label>
-            <ion-input value="{{localidad.price}}" class="input_data" readonly></ion-input>
+            <ion-input value="{{ getFormattedPrice() }}" class="input_data" readonly></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
