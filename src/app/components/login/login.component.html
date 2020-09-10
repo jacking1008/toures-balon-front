@@ -1,0 +1,39 @@
+<ion-header>
+	<ion-toolbar>
+    <ion-buttons fill="outline" slot="end">
+			<ion-button (click)="dismiss()">
+				<ion-icon name="exit-outline"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="login()" novalidate class="login-container">
+    <ion-list class="head">
+      <img class="img-bic" src="assets/icon/favicon.png" alt="Toures Balón" />
+    </ion-list>
+
+    <ion-item class="field">
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input name="user" formControlName="user" type="text" [(ngModel)]="user"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="form.get('user').errors && form.get('user').dirty ">
+      <p class="danger-text" *ngIf="form.get('user').hasError('required')">Este campo es requerido</p>
+    </ion-item>
+
+    <ion-item class="field">
+      <ion-label position="floating" class="pass-input">Contraseña</ion-label>
+      <ion-icon slot="end" name="eye" (click)='hideShowPassword()' class="forget"></ion-icon>
+      <ion-input [type]="passwordType" name="password" formControlName="password" required [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="form.get('password').errors">
+      <p class="danger-text" *ngIf="form.get('password').hasError('minlength')">Este campo es requerido</p>
+    </ion-item>
+    <nav>
+      <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid">Ingresar</ion-button>
+    </nav>
+  </form>
+</ion-content>
