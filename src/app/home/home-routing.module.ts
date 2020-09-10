@@ -6,6 +6,37 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    children: [
+      {
+        path: 'plan',
+        loadChildren: () => import('../plans/plans.module').then( m => m.PlansPageModule)
+      },
+      {
+        path: 'event',
+        loadChildren: () => import('../events/events.module').then( m => m.EventsPageModule)
+      },
+      {
+        path: 'transport',
+        loadChildren: '../plans/plans.module#PlansPageModule'
+      },
+      {
+        path: 'hotel',
+        loadChildren: '../plans/plans.module#PlansPageModule'
+      },
+      {
+        path: 'cart',
+        loadChildren: '../plans/plans.module#PlansPageModule'
+      },
+      {
+        path: 'detail/:type/:id',
+        loadChildren: () => import('../detail/detail.module').then( m => m.DetailPageModule)
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: 'home/event',
+    pathMatch: 'full'
   }
 ];
 
