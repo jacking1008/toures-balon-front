@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailShow } from '../models/detail-show';
 import { Locality } from '../models/locality';
 import { CurrencyFormat } from '../global/currency-format';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail',
@@ -14,14 +15,22 @@ import { CurrencyFormat } from '../global/currency-format';
 })
 export class DetailPage implements OnInit {
 
+  form: FormGroup;
+
   private detail: DetailShow = new DetailShow();
   private localidad: Locality = new Locality();
 
   constructor(
     public modalController: ModalController,
     private route: ActivatedRoute,
-    private eventSrv : ShowService
-  ) { }
+    private eventSrv : ShowService,
+    private formbld: FormBuilder 
+  ) { 
+    this.form = this.formbld.group({
+      locality: ["", [Validators.required]],
+      quantity: ["", [Validators.required, Validators.maxLength(2)]]
+    });
+  }
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');

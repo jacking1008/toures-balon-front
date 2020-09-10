@@ -43,40 +43,42 @@
       </ion-col>
   </ion-row>
   <ion-card>
-    <ion-row class="box_buy">
-      <ion-col size-sm=12 size-md=3>
-        <ion-list>
-          <ion-item>
-            <ion-label position="stacked">Localidad:</ion-label>
-            <ion-select class="input_data" (ionChange)="onSelectChange($event)">
-              <ion-select-option *ngFor="let key of detail.localities" value="{{key.id}}">{{ key.name }}</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size-sm=12 size-md=3>
-        <ion-list>
-          <ion-item>
-            <ion-label position="stacked">Valor:</ion-label>
-            <ion-input value="{{ getFormattedPrice() }}" class="input_data" readonly></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size-sm=12 size-md=3>
-        <ion-list>
-          <ion-item>
-            <ion-label position="stacked">Cantidad:</ion-label>
-            <ion-input value="" class="input_data"></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size-sm=12 size-md=3>
-        <ion-list lines="none">
-          <ion-item>
-            <ion-button color="primary" size="default" style="width: 100%;">Comprar</ion-button>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
+    <form [formGroup]="form" (ngSubmit)="login()" novalidate>
+      <ion-row class="box_buy">
+        <ion-col size-sm=12 size-md=3>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked">Localidad:</ion-label>
+              <ion-select class="input_data" (ionChange)="onSelectChange($event)" formControlName="locality">
+                <ion-select-option *ngFor="let key of detail.localities" value="{{key.id}}">{{ key.name }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size-sm=12 size-md=3>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Valor:</ion-label>
+              <ion-input value="{{ getFormattedPrice() }}" class="input_data" readonly></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size-sm=12 size-md=3>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Cantidad:</ion-label>
+              <ion-input formControlName="quantity" class="input_data"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size-sm=12 size-md=3>
+          <ion-list lines="none">
+            <ion-item>
+              <ion-button color="primary" size="default" style="width: 100%;" [disabled]="form.invalid">Comprar</ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </form>
   </ion-card>
 </ion-grid>
