@@ -18,10 +18,6 @@
       <ion-input name="user" formControlName="user" type="text" [(ngModel)]="user"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="form.get('user').errors && form.get('user').dirty ">
-      <p class="danger-text" *ngIf="form.get('user').hasError('required')">Este campo es requerido</p>
-    </ion-item>
-
     <ion-item class="field">
       <ion-label position="floating" class="pass-input">Contraseña</ion-label>
       <ion-icon slot="end" name="eye" (click)='hideShowPassword()' class="forget"></ion-icon>

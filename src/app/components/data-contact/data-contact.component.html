@@ -1,0 +1,111 @@
+<ion-grid class="container_box">
+  <ion-row>
+    <ion-col size-md="6">
+      <ion-label>Información de Contacto</ion-label>
+    </ion-col>
+    <ion-col size-md="6" class="subtitle">
+      <ion-label>¿Ya tienes una cuenta? <a>Inicia Sesión</a></ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size-md="12">
+      <ion-item class="field roundedInput">
+        <ion-label position="floating">Correo de contacto</ion-label>
+        <ion-input name="user"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="check">Mantenme informado de promociones exclusivas y noticias.</ion-label>
+        <ion-checkbox class="check" slot="start" size="small"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size-md="12">
+      <ion-label>Seleccione su opción de entrega</ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="4">
+            <ion-button class="btn-delivery" color="light" (click)="setShipping('QR')"><ion-icon class="icon" name="qr-code-outline"></ion-icon>Código QR</ion-button>
+          </ion-col>
+          <ion-col size-md="4">
+            <ion-button class="btn-delivery" color="light" (click)="setShipping('TICKET')"><ion-icon class="icon" name="pricetag-outline"></ion-icon>Ticket</ion-button>
+          </ion-col>
+          <ion-col size-md="4">
+            <ion-button class="btn-delivery" color="light" (click)="setShipping('SHIP')"><ion-icon class="icon"  name="home-outline"></ion-icon>Domicilio</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <form *ngIf="shipping == 'TICKET'" [formGroup]="formTicket" (ngSubmit)="login()" novalidate class="info-data">
+      <ion-col size-md="12">
+        <ion-item class="field" class="roundedInput">
+          <ion-label position="stacked">TIPO ENTREGA:</ion-label>
+          <ion-select (ionChange)="onSelectChange($event)" formControlName="tienda">
+            <ion-select-option *ngFor="let key of shopList" value="{{key.id}}">{{ key.zona + " - " + key.name + " - " + key.direccion }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </form>
+    <form *ngIf="shipping == 'SHIP'" [formGroup]="formShipping" (ngSubmit)="login()" novalidate class="info-data">
+      <ion-col size-md="12">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-md="6">
+              <ion-item class="field" class="roundedInput">
+                <ion-label position="stacked">Nombre</ion-label>
+                <ion-input name="name" formControlName="name" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-md="6">
+              <ion-item class="field roundedInput">
+                <ion-label position="stacked">Apellido</ion-label>
+                <ion-input name="lastName" formControlName="lastName" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-md="12">
+              <ion-item class="field roundedInput">
+                <ion-label position="stacked">Dirección</ion-label>
+                <ion-input name="address" formControlName="address" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-md="12">
+              <ion-item class="roundedInput">
+                <ion-label position="stacked">Apartamento, Suite, etc.. (Opcional)</ion-label>
+                <ion-input name="opt" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-md="4">
+              <ion-item class="field roundedInput">
+                <ion-label position="stacked">País</ion-label>
+                <ion-input name="country" formControlName="country" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-md="4">
+              <ion-item class="field roundedInput">
+                <ion-label position="stacked">Ciudad</ion-label>
+                <ion-input name="city" formControlName="city" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-md="4">
+              <ion-item class="field roundedInput">
+                <ion-label position="stacked">Código Postal</ion-label>
+                <ion-input name="postalCode" formControlName="postalCode" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </form>
+  </ion-row>
+  <ion-row>
+    <ion-button class="btn-sucess" color="primary" (click)="setShipping('SHIP')">GENERAR ORDEN</ion-button>
+  </ion-row>
+</ion-grid>
