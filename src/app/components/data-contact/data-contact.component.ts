@@ -69,7 +69,6 @@ export class DataContactComponent implements OnInit {
   }
 
   validate(){
-    debugger
     if(this.shipping != null && this.shipping != undefined){
       switch (this.shipping) {
         case 'QR':

@@ -15,13 +15,13 @@
       <h3>Subtotal</h3>
       <h3>Envío</h3>
     </ion-label>
-    <ion-label slot=end>
-      <h3>{{ getFormattedPrice(cartInfo.subtotal) }}</h3>
-      <h3>{{ getFormattedPrice(cartInfo.shipping) }}</h3>
+    <ion-label>
+      <h3 class="text_right">{{ getFormattedPrice(cartInfo.subtotal) }}</h3>
+      <h3 class="text_right">{{ getFormattedPrice(cartInfo.shipping) }}</h3>
     </ion-label>
   </ion-item>
   <ion-item lines="none">
     <ion-label slot=start>Total</ion-label>
-    <ion-label slot=end>{{ getFormattedPrice(cartInfo.total) }}</ion-label>
+    <ion-label class="text_right">{{ getFormattedPrice(cartInfo.total) }}</ion-label>
   </ion-item>
 </ion-list>

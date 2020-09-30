@@ -31,7 +31,6 @@ export class PaymentPage implements OnInit {
   }
 
   async presentModal() {
-    debugger
     const modal = await this.modalController.create({
       component: PayComponent,
       componentProps: {

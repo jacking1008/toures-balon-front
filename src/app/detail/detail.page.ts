@@ -43,7 +43,6 @@ export class DetailPage implements OnInit {
   }
 
   async presentModal() {
-    debugger
     const modal = await this.modalController.create({
       component: ModalComponent,
       componentProps: {
