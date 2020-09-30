@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 import { Shop } from 'src/app/models/shop';
 import { ShopService } from 'src/app/services/shop.service';
+import { PayComponent } from '../pay/pay.component';
 
 @Component({
   selector: 'app-data-contact',
@@ -25,9 +27,11 @@ export class DataContactComponent implements OnInit {
 
   @Output() change = new EventEmitter();
 
+  @Output() doPay = new EventEmitter();
+
   constructor(
     private formbld: FormBuilder,
-    private shopSrv: ShopService
+    private shopSrv: ShopService,
   ) {
     this.formTicket = this.formbld.group({
       tienda: ["", [Validators.required]],
@@ -61,6 +65,10 @@ export class DataContactComponent implements OnInit {
 
   onSelectChange(selectedValue: any) {
     this.shopDirr = this.shopList.find( e => e.id == selectedValue.target.value);
+  }
+
+  pay(){
+    this.doPay.emit();
   }
 
 }

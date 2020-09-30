@@ -1,5 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PayComponent } from '../components/pay/pay.component';
 import { Cart } from '../models/cart';
 
 @Component({
@@ -11,7 +13,9 @@ export class PaymentPage implements OnInit {
 
   cartInfo: Cart;
 
-  constructor() { }
+  constructor( 
+    private modalController: ModalController,
+  ) { }
 
   ngOnInit() {
     this.cartInfo = new Cart();
@@ -22,10 +26,19 @@ export class PaymentPage implements OnInit {
   }
 
   getPrice(event){
-    console.log(event);
-    debugger
     this.cartInfo.shipping = event.value;
     this.cartInfo.total = this.cartInfo.subtotal + this.cartInfo.shipping;
+  }
+
+  async presentModal() {
+    debugger
+    const modal = await this.modalController.create({
+      component: PayComponent,
+      componentProps: {
+        value: this.cartInfo.total
+      }
+    });
+    return await modal.present();
   }
 
 }

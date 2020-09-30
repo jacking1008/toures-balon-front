@@ -1,0 +1,87 @@
+<ion-content *ngIf="screen === 'Payment'">
+  <ion-item class="box_label" lines="none">
+    <ion-label>DATOS DE PAGO</ion-label>
+  </ion-item>
+  <ion-grid>
+    <form [formGroup]="form" (ngSubmit)="login()" class="box" novalidate>
+      <ion-row>
+        <ion-col size-md="8">
+          <ion-item class="field">
+            <ion-label position="stacked">Nombre en la Tarjeta</ion-label>
+            <ion-input name="name" formControlName="name" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="4">
+          <ion-item lines="none">
+              <img src="assets/icon/credit-card/visa.png" class="credit_card">
+              <img src="assets/icon/credit-card/master.png"class="credit_card">
+              <img src="assets/icon/credit-card/amex.png" class="credit_card">
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="12">
+          <ion-item class="field">
+            <ion-label position="stacked">Número de Tajeta</ion-label>
+            <ion-input name="number" formControlName="number" type="numeric"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="4">
+          <ion-item class="field">
+            <ion-label position="stacked">Mes de vencimiento</ion-label>
+            <ion-select name="month" formControlName="month">
+              <ion-select-option *ngFor="let key of months" value="key">{{ key }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="4">
+          <ion-item class="field">
+            <ion-label position="stacked">Año de vencimiento</ion-label>
+            <ion-select name="year" formControlName="year">
+              <ion-select-option *ngFor="let key of years" value="key">{{ key }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size-md="4">
+          <ion-item class="field">
+            <ion-label position="stacked">CVV</ion-label>
+            <ion-input name="cvv" formControlName="cvv" type="numeric"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </form>
+    <ion-row class="box_button">
+      <ion-button class="btn-sucess" color="primary" (click)="pay()">GENERAR PAGO</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="screen === 'Bill'" class="box_container">
+  <ion-item lines="none">
+    <img src="assets/icon/happy_pay.png" class="payment">
+  </ion-item>
+  <ion-item lines="none box_container" style="text-align: center">
+    <ion-label>{{ rtaBill.mensaje }}</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-item class="field box_container">
+      <ion-label position="stacked">Número de Referencia</ion-label>
+      <ion-input value="{{ rtaBill.referencia }}" readonly></ion-input>
+    </ion-item>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-item class="field box_container" >
+      <ion-label position="stacked">Valor</ion-label>
+      <ion-input value="{{ value }}" readonly></ion-input>
+    </ion-item>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-item class="field box_container">
+      <ion-label position="stacked">Número de Transacción</ion-label>
+      <ion-input value="{{ rtaBill.nroTransaccion }}" readonly></ion-input>
+    </ion-item>
+  </ion-item>
+  <ion-button class="box_container home_btn" color="primary" (click)="home()">SEGUIR COMPRANDO</ion-button>
+</ion-content>

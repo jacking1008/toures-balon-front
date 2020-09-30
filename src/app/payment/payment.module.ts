@@ -10,6 +10,7 @@ import { PaymentPage } from './payment.page';
 import { DataContactComponent } from '../components/data-contact/data-contact.component';
 import { CartComponent } from '../components/cart/cart.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
