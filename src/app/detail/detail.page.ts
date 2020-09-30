@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../components/modal/modal.component';
 import { ShowService } from '../services/show.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetailShow } from '../models/detail-show';
 import { Locality } from '../models/locality';
 import { CurrencyFormat } from '../global/currency-format';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Cart } from '../models/cart';
+import { CartItem } from '../models/cart-item';
 
 @Component({
   selector: 'app-detail',
@@ -24,7 +26,8 @@ export class DetailPage implements OnInit {
     public modalController: ModalController,
     private route: ActivatedRoute,
     private eventSrv : ShowService,
-    private formbld: FormBuilder 
+    private formbld: FormBuilder,
+    private router: Router
   ) { 
     this.form = this.formbld.group({
       locality: ["", [Validators.required]],
@@ -67,6 +70,18 @@ export class DetailPage implements OnInit {
 
   getFormattedPrice(){
     return this.localidad.price != undefined ? CurrencyFormat.convertFormatting('USD', this.localidad.price) : "";
+  }
+
+  order(){
+    let item:CartItem = new CartItem();
+    item.id = this.detail.id;
+    item.image = this.detail.image;
+    item.name = this.detail.name;
+    item.subName = this.localidad.name;
+    item.price = this.localidad.price;
+    item.quantity = this.form.controls.quantity.value;
+    sessionStorage.setItem('cart',JSON.stringify([item]));
+    this.router.navigate(['/payment']);
   }
 
 }

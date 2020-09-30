@@ -10,15 +10,7 @@ import { LoginComponent } from '../components/login/login.component';
 export class HomePage {
 
   constructor(
-    public loginController : ModalController
+    
   ) {}
-
-  async presentLoginModal() {
-    debugger
-    const modal = await this.loginController.create({
-      component: LoginComponent
-    });
-    return await modal.present();
-  }
 
 }

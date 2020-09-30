@@ -1,19 +1,5 @@
 <ion-header [translucent]="false">
-  <ion-toolbar>
-    <ion-buttons slot="start" class="title-logo">
-      <ion-button>
-        <ion-label class="logo">Toures Balón</ion-label>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end" class="buttons-login">
-      <ion-button color="light" fill="solid" (click)="presentLoginModal()">
-        Iniciar Sesión
-      </ion-button>
-      <ion-button color="primary" fill="solid">
-        Registrate
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 <ion-content>
 <ion-tabs>
@@ -24,7 +10,7 @@
     </ion-tab-button>
     <ion-tab-button tab="event">
       <ion-icon name="football-outline"></ion-icon>
-      <ion-label>Eventos</ion-label>
+      <ion-label>Espectáculo</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="transport">
       <ion-icon name="airplane-outline"></ion-icon>
