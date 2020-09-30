@@ -32,7 +32,7 @@
           <ion-item class="field">
             <ion-label position="stacked">Mes de vencimiento</ion-label>
             <ion-select name="month" formControlName="month">
-              <ion-select-option *ngFor="let key of months" value="key">{{ key }}</ion-select-option>
+              <ion-select-option *ngFor="let key of months" value="{{key}}">{{ key }}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -40,7 +40,7 @@
           <ion-item class="field">
             <ion-label position="stacked">Año de vencimiento</ion-label>
             <ion-select name="year" formControlName="year">
-              <ion-select-option *ngFor="let key of years" value="key">{{ key }}</ion-select-option>
+              <ion-select-option *ngFor="let key of years" value="{{key}}">{{ key }}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
