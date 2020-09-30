@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Shop } from 'src/app/models/shop';
 import { ShopService } from 'src/app/services/shop.service';
 import { PayComponent } from '../pay/pay.component';
@@ -32,6 +32,7 @@ export class DataContactComponent implements OnInit {
   constructor(
     private formbld: FormBuilder,
     private shopSrv: ShopService,
+    private toastController: ToastController
   ) {
     this.formTicket = this.formbld.group({
       tienda: ["", [Validators.required]],
@@ -67,8 +68,40 @@ export class DataContactComponent implements OnInit {
     this.shopDirr = this.shopList.find( e => e.id == selectedValue.target.value);
   }
 
+  validate(){
+    debugger
+    if(this.shipping != null && this.shipping != undefined){
+      switch (this.shipping) {
+        case 'QR':
+          return false;
+        case 'TICKET':
+          return !this.formTicket.valid;
+        case 'SHIP':
+          return !this.formShipping.valid;
+        default:
+          return false;
+      }
+    } else{
+      return true;
+    }
+  }
+
   pay(){
-    this.doPay.emit();
+    if(!this.validate()){
+      this.doPay.emit();
+    } else{
+      this.presentToast();
+    }
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Debes llenar todos los campos del formulario.',
+      duration: 2000,
+      position: 'top',
+      color: 'danger'
+    });
+    toast.present();
   }
 
 }
