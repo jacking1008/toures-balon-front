@@ -7,7 +7,7 @@
     <ion-label>
       <h2>{{ key.name }}</h2>
       <h3>{{ key.subName }}</h3>
-      <p>I've got enough on my plate as it is, and I...</p>
+      <p>{{ getFormattedPrice(key.price) }}</p>
     </ion-label>
   </ion-item>
   <ion-item lines="full">
@@ -16,12 +16,12 @@
       <h3>Envío</h3>
     </ion-label>
     <ion-label slot=end>
-      <h3>{{ cartInfo.subtotal }}</h3>
-      <h3>{{ cartInfo.shipping}}</h3>
+      <h3>{{ getFormattedPrice(cartInfo.subtotal) }}</h3>
+      <h3>{{ getFormattedPrice(cartInfo.shipping) }}</h3>
     </ion-label>
   </ion-item>
   <ion-item lines="none">
     <ion-label slot=start>Total</ion-label>
-    <ion-label slot=end>{{ cartInfo.total}}</ion-label>
+    <ion-label slot=end>{{ getFormattedPrice(cartInfo.total) }}</ion-label>
   </ion-item>
 </ion-list>

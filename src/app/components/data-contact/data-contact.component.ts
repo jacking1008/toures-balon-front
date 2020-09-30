@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Shop } from 'src/app/models/shop';
 import { ShopService } from 'src/app/services/shop.service';
@@ -19,7 +19,11 @@ export class DataContactComponent implements OnInit {
   passwordIcon: string = "eye-off";
   user: any = "";
   password: any = "";
+  prices = [{ id: 'QR', value: 0},
+    { id: 'TICKET', value: 5000},
+    { id: 'SHIP', value: 12000}]
 
+  @Output() change = new EventEmitter();
 
   constructor(
     private formbld: FormBuilder,
@@ -40,8 +44,8 @@ export class DataContactComponent implements OnInit {
   }
 
   setShipping(value: String){
-    debugger
     this.shipping = value;
+    this.change.emit(this.prices.find( e => e.id === this.shipping));
   }
 
   ngOnInit() {

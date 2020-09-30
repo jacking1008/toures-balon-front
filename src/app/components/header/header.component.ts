@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   async presentLoginModal() {
-    debugger
     const modal = await this.loginController.create({
       component: LoginComponent
     });
