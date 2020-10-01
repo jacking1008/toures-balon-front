@@ -54,9 +54,7 @@ export class DataContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shopSrv.cargarData().subscribe( rta => {
-      this.shopList = rta;
-    });
+    this.shopList = this.shopSrv.cargarData();
   }
 
   hideShowPassword() {

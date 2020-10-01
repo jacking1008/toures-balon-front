@@ -14,9 +14,10 @@ export class ShopService {
   ) {
   }
 
-  cargarData(): Observable<Shop[]> {
-    const path = `assets/shops.json`;
-    return  this.http.get<Shop[]>(path);
+  cargarData(): Shop[] {
+    let colombia = require('src/assets/shops.json');
+    //const path = `assets/shops.json`;
+    return colombia;
   }
 
 }
