@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
-import { timingSafeEqual } from 'crypto';
 import { Bill } from 'src/app/models/bill';
 import { Pay } from 'src/app/models/pay';
 import { PayService } from 'src/app/services/pay.service';

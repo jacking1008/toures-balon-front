@@ -17,8 +17,8 @@ import { HeaderComponent } from '../components/header/header.component';
     HomePageRoutingModule
   ],
   declarations: [
-    HomePage,
-    HeaderComponent
+    HeaderComponent,
+    HomePage
   ]
 })
 export class HomePageModule {}

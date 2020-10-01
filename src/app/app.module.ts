@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PayComponent } from './components/pay/pay.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, PayComponent],
