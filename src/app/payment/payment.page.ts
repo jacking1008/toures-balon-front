@@ -11,30 +11,29 @@ import { Cart } from '../models/cart';
 })
 export class PaymentPage implements OnInit {
 
-  cartInfo: Cart;
+  toPay: Cart[];
 
   constructor( 
     private modalController: ModalController,
-  ) { }
+  ) { 
+    this.toPay = JSON.parse(sessionStorage.getItem('to-pay'));
+  }
 
   ngOnInit() {
-    this.cartInfo = new Cart();
-    this.cartInfo.shipping = 0;
-    this.cartInfo.eventList = JSON.parse(sessionStorage.getItem('cart'));
-    this.cartInfo.subtotal = this.cartInfo.eventList.map( e => { return e.price * e.quantity }).reduce((a,b) => a +b);
-    this.cartInfo.total = this.cartInfo.subtotal + this.cartInfo.shipping;
+    debugger
+    this.toPay = JSON.parse(sessionStorage.getItem('to-pay'));
   }
 
   getPrice(event){
-    this.cartInfo.shipping = event.value;
-    this.cartInfo.total = this.cartInfo.subtotal + this.cartInfo.shipping;
+    //this.cartInfo.shipping = event.value;
+    //this.cartInfo.total = this.cartInfo.subtotal + this.cartInfo.shipping;
   }
 
   async presentModal() {
     const modal = await this.modalController.create({
       component: PayComponent,
       componentProps: {
-        value: this.cartInfo.total
+        //value: this.cartInfo.total
       }
     });
     return await modal.present();

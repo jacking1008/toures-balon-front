@@ -8,7 +8,7 @@
           <app-data-contact (change)="getPrice($event)" (doPay)="presentModal()"></app-data-contact>
       </ion-col>
       <ion-col size-md="5" size-sm="12">
-        <app-cart [cartInfo]="cartInfo"></app-cart>
+        <app-cart [cartInfo]="toPay"></app-cart>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -13,24 +13,24 @@
 </ion-toolbar>
 <!-- Seccion de busqueda -->
 
-<ion-grid class="busqueda" *ngIf="cartItems">
+<ion-grid class="busqueda" *ngIf="cartItems?.length > 0">
   <ion-list>
-    <ion-list-header>
+    <ion-item>
       <ion-row style="width: 100%;">
-        <ion-col size-md=6>
+        <ion-col size-md=6 style="">
           Producto / Plan
         </ion-col>
-        <ion-col size-md=2>
+        <ion-col size-md=2 class="to-center">
           Precio
         </ion-col>
-        <ion-col size-md=2>
+        <ion-col size-md=2 class="to-center">
           Cantidad
         </ion-col>
-        <ion-col size-md=2>
+        <ion-col size-md=2 class="to-center">
           Total
         </ion-col>
       </ion-row>
-    </ion-list-header>
+    </ion-item>
     <ion-item *ngFor='let item of cartItems'>
       <ion-row style="width: 100%;">
         <ion-col size-md=6>
@@ -42,20 +42,44 @@
             </ion-col>
             <ion-col size-md="10" style="margin-top: auto;margin-bottom: auto;">
               <ion-row style="margin-bottom: 10px;"><ion-label style="font-size: 18px">{{ item.name }}</ion-label></ion-row>
-              <ion-row><ion-router-link color="primary" style="font-size: 12px;">Eliminar</ion-router-link></ion-row>
+              <ion-row><ion-router-link color="primary" style="font-size: 12px;" (click)="deleteCart(item)">Eliminar</ion-router-link></ion-row>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col size-md=2>
-          {{ item.unitPrice }}
+          <ion-input class="roundedInput to-center" type="text" value="{{ getFormattedPrice(item.unitPrice) }}" disabled></ion-input>
         </ion-col>
         <ion-col size-md=2>
-          {{ item.quantity }}
+          <ion-input class="roundedInput to-center" type="number" value="{{item.quantity}}" (change)="modifyCart(item, $event.target.value)"></ion-input>
         </ion-col>
         <ion-col size-md=2>
-          {{ item.unitPrice * item.quantity }}
+          <ion-input class="roundedInput to-center" type="text" value="{{ getFormattedPrice(item.unitPrice * item.quantity) }}" disabled></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-row style="width: 100%;">
+        <ion-col size-md=8></ion-col>
+        <ion-col size-md=2 class="to-center">
+          <h3 style="margin-top:25px">Subtotal</h3>
+        </ion-col>
+        <ion-col size-md=2 class="to-center">
+          <ion-input class="roundedInput to-center" type="text" value="{{ getSubtotal() }}" disabled></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-row style="width: 100%">
+        <ion-col size-md=8></ion-col>
+        <ion-col size-md=4 class="to-center">
+          <ion-button color="primary" class="reserver_btn" (click)="reservar()">RESERVAR</ion-button>
         </ion-col>
       </ion-row>
     </ion-item>
   </ion-list>
+</ion-grid>
+
+<ion-grid class="busqueda to-center" *ngIf="cartItems?.length == 0" style="margin-top:5%">
+  <ion-img src="assets/icon/cart.png" class="to-center" style="width:20%; opacity: 0.5;margin-bottom: 10px;"></ion-img>
+  <ion-label style="margin-top:10px" style="color:#a2a4ab">Aún no tienes productos en tu carrito</ion-label>
 </ion-grid>

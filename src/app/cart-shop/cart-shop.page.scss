@@ -19,3 +19,43 @@
     border: 1px#a2a4ab solid;
     border-radius: 5px;
 }
+
+.roundedInput {
+    --border-color: var(--ion-color-medium-shade);
+    --border-radius: 3px;
+    --border-width: 1px;
+    --box-shadow: 2px gray;
+    --highlight-height: 0;
+    --background: #f8f9fa;
+    width: 60%;
+    margin-top: 10%;
+}
+
+.roundedInput.ion-invalid.item-has-focus {
+
+    --border-color: var(--ion-color-danger-shade);
+  }
+  
+  .roundedInput.ion-valid.item-has-focus {
+    --border-color: var(--ion-color-success-shade);
+  }
+  
+  .roundedInput.ion-invalid.ion-dirty {
+    --border-color: var(--ion-color-danger-shade);
+  }
+  
+  .roundedInput.ion-valid.ion-dirty {
+    --border-color: var(--ion-color-success-shade);
+  }
+
+  .to-center{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .reserver_btn{
+    width: 80%;
+    margin-left: 30px;
+    margin-right: 30px;
+  }

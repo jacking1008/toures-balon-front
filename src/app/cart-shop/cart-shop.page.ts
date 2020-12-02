@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CurrencyFormat } from '../global/currency-format';
 import { Cart } from '../models/cart';
 import { CartService } from '../services/cart.service';
 
@@ -10,9 +12,11 @@ import { CartService } from '../services/cart.service';
 export class CartShopPage implements OnInit {
 
   cartItems : Cart[];
+  reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   constructor(
-    private cartSrv :CartService
+    private cartSrv :CartService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -26,6 +30,33 @@ export class CartShopPage implements OnInit {
     })
   }
 
+  deleteCart(item:Cart){
+    let sessionId = sessionStorage.getItem('idUser');
+    this.cartSrv.delete(sessionId,item.idProduct).subscribe( () => {
+        this.getCart();
+      }
+    );
+  }
 
+  modifyCart(item:Cart, value:string){
+    item.quantity = parseInt(value);
+    let sessionId = sessionStorage.getItem('idUser');
+    this.cartSrv.modify(sessionId, item).subscribe( () => {
+      this.getCart();
+    });
+  }
+
+  getFormattedPrice(value:number){
+    return CurrencyFormat.convertFormatting('USD',value);
+  }
+
+  getSubtotal(){
+    return CurrencyFormat.convertFormatting('USD',this.cartItems.map( r => { return r.unitPrice * r.quantity } ).reduce(this.reducer));
+  }
+
+  reservar(){
+    sessionStorage.setItem('to-pay',JSON.stringify(this.cartItems));
+    this.router.navigate(['/payment']);
+  }
 
 }

@@ -10,16 +10,26 @@ import { CartItem } from 'src/app/models/cart-item';
 })
 export class CartComponent implements OnInit {
 
-  @Input() cartInfo: Cart;
+  @Input() cartInfo: Cart[] = [];
+
+  reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   constructor() { }
 
   ngOnInit() {
-    if(this.cartInfo == undefined) this.cartInfo = new Cart();
+    debugger
+    if(this.cartInfo == undefined) this.cartInfo = [];
   }
 
   getFormattedPrice(value: number){
     return CurrencyFormat.convertFormatting('USD', value);
+  }
+
+  getSubtotal(){
+    if(this.cartInfo != undefined && this.cartInfo.length > 0){
+      return CurrencyFormat.convertFormatting('USD',this.cartInfo.map( r => { return r.unitPrice * r.quantity } ).reduce(this.reducer));
+    }
+
   }
 
 }

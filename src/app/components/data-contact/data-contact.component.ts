@@ -15,15 +15,11 @@ export class DataContactComponent implements OnInit {
   shipping: String;
   shopList: Shop[];
   shopDirr: Shop;
-  formTicket: FormGroup;
   formShipping: FormGroup;
   passwordType: string = "password";
   passwordIcon: string = "eye-off";
   user: any = "";
   password: any = "";
-  prices = [{ id: 'QR', value: 0},
-    { id: 'TICKET', value: 5000},
-    { id: 'SHIP', value: 12000}]
 
   @Output() change = new EventEmitter();
 
@@ -34,9 +30,6 @@ export class DataContactComponent implements OnInit {
     private shopSrv: ShopService,
     private toastController: ToastController
   ) {
-    this.formTicket = this.formbld.group({
-      tienda: ["", [Validators.required]],
-    });
     this.formShipping = this.formbld.group({
       name: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
@@ -46,11 +39,6 @@ export class DataContactComponent implements OnInit {
       postalCode: ["", [Validators.required]]
     });
 
-  }
-
-  setShipping(value: String){
-    this.shipping = value;
-    this.change.emit(this.prices.find( e => e.id === this.shipping));
   }
 
   ngOnInit() {
@@ -66,29 +54,8 @@ export class DataContactComponent implements OnInit {
     this.shopDirr = this.shopList.find( e => e.id == selectedValue.target.value);
   }
 
-  validate(){
-    if(this.shipping != null && this.shipping != undefined){
-      switch (this.shipping) {
-        case 'QR':
-          return false;
-        case 'TICKET':
-          return !this.formTicket.valid;
-        case 'SHIP':
-          return !this.formShipping.valid;
-        default:
-          return false;
-      }
-    } else{
-      return true;
-    }
-  }
-
   pay(){
-    if(!this.validate()){
       this.doPay.emit();
-    } else{
-      this.presentToast();
-    }
   }
 
   async presentToast() {
