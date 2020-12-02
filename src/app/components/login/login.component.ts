@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   passwordType: string = "password";
   passwordIcon: string = "eye-off";
+  userId: string;
 
   constructor(
     private formbld: FormBuilder,
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   dismiss() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(this.userId);
   }
 
   login(){
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
     auth.password = this.form.value.password;
     this.loginSrv.auth(auth).subscribe( rta => {
       this.presentToast('¡Bienvenido de nuevo','success');
+      this.userId = rta.idUser;
       this.dismiss();
       sessionStorage.setItem('idUser',rta.idUser);
       sessionStorage.setItem('token',rta.token);
