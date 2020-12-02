@@ -8,12 +8,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PayComponent } from './components/pay/pay.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AuthInterceptorService } from 'src/interceptor/auth-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, PayComponent],
@@ -22,6 +23,10 @@ import { HeaderComponent } from './components/header/header.component';
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi:true
+    },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

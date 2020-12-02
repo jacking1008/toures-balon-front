@@ -1,0 +1,45 @@
+[
+    {
+        "id_product": 1000001,
+        "title": "PLAN",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "category": "plan",
+        "status": true,
+        "user_rating": 3.5,
+        "price": 500000.12
+    },
+    {
+        "id_product": 1000002,
+        "title": "SHOW",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "id_provider": "00002",
+        "category": "show",
+        "status": true,
+        "user_rating": 5,
+        "price": 200000.12
+    },
+    {
+        "id_product": 1000003,
+        "title": "TRANSPORTE",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "id_provider": "00003",
+        "category": "transport",
+        "status": true,
+        "user_rating": 2.5,
+        "price": 150000.12
+    },
+    {
+        "id_product": 1000004,
+        "title": "HOTEL",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
+        "id_provider": "00003",
+        "category": "acommodation",
+        "status": true,
+        "user_rating": 1.5,
+        "price": 30000.12
+    }
+]

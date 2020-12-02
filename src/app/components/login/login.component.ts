@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { Auth } from 'src/app/models/auth';
+import { Login } from 'src/app/models/login';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +15,12 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   passwordType: string = "password";
   passwordIcon: string = "eye-off";
-  user: any = "";
-  password: any = "";
 
   constructor(
     private formbld: FormBuilder,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loginSrv: LoginService,
+    private toastController: ToastController
   ) { 
     this.form = this.formbld.group({
       user: ["", [Validators.required]],
@@ -34,6 +37,29 @@ export class LoginComponent implements OnInit {
 
   dismiss() {
     this.modalController.dismiss();
+  }
+
+  login(){
+    debugger
+    let auth = new Login();
+    auth.userName = this.form.value.user;
+    auth.password = this.form.value.password;
+    this.loginSrv.auth(auth).subscribe( rta => {
+      this.presentToast('¡Bienvenido de nuevo','success');
+      this.dismiss();
+      sessionStorage.setItem('idUser',rta.idUser);
+      sessionStorage.setItem('token',rta.token);
+    })
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
+      color: color
+    });
+    toast.present();
   }
 
 }

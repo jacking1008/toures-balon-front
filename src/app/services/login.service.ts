@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Login } from '../models/login';
+import { Auth } from '../models/auth';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginService {
+
+  constructor(
+    private http: HttpClient,
+  ) {
+  }
+
+  auth(user: Login): Observable<Auth> {
+    //const path = `${environment.url}/espectaculo`;
+    const path = `https://localhost:38723/api/User`;
+    return  this.http.post<Auth>(path,user);
+  }
+
+}

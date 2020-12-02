@@ -8,6 +8,10 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: 'default',
+        loadChildren: () => import('../default/default.module').then( m => m.DefaultPageModule)
+      },
+      {
         path: 'plan',
         loadChildren: () => import('../plans/plans.module').then( m => m.PlansPageModule)
       },
@@ -35,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home/event',
+    redirectTo: 'default',
     pathMatch: 'full'
   }
 ];

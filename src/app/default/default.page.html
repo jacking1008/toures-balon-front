@@ -1,0 +1,13 @@
+<!-- Seccion de busqueda -->
+<ion-toolbar class="search_toolbar">
+  <ion-searchbar [animated]='true' debounce="400" placeholder="Busca tu evento" showCancelButton="never" class="search_bar"></ion-searchbar>
+</ion-toolbar>
+<!-- Seccion de busqueda -->
+
+<ion-grid class="busqueda">
+  <ion-row>
+      <ion-col *ngFor='let dat of products' size-sm=12 size-md=3>
+        <app-card [information]="dat" ></app-card>
+      </ion-col>
+  </ion-row>
+</ion-grid>
