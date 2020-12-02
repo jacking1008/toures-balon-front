@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'home/default',
     pathMatch: 'full'
   },
   {
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'default',
     loadChildren: () => import('./default/default.module').then( m => m.DefaultPageModule)
+  },
+  {
+    path: 'cart-shop',
+    loadChildren: () => import('./cart-shop/cart-shop.module').then( m => m.CartShopPageModule)
   }
 ];
 

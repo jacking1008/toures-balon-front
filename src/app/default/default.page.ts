@@ -12,13 +12,19 @@ import { ProductService } from '../services/product.service';
 export class DefaultPage implements OnInit {
 
   products: Product[];
+  text: string;
 
   constructor(
     private productSrv : ProductService
   ) { }
 
   ngOnInit() {
-    this.productSrv.search("").subscribe( rta => {
+    this.text = ""
+    this.search();
+  }
+
+  search(){
+    this.productSrv.search(this.text).subscribe( rta => {
       this.products = rta;
     })
   }

@@ -9,6 +9,8 @@ import { LoginComponent } from '../components/login/login.component';
 })
 export class HomePage {
 
+  cart: number;
+
   constructor(
     
   ) {}
