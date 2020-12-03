@@ -65,11 +65,7 @@ export class AuthInterceptorService implements HttpInterceptor {
             this.messagesExtern();
           }
         }
-      ),
-      finalize(() => {
-
-        this.loadingCtrl.dismiss();
-      })
+      )
     );
   }
 

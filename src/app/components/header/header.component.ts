@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
 
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public loginController : ModalController,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private router: Router) { }
 
   ngOnInit() {}
 
@@ -53,6 +55,10 @@ export class HeaderComponent implements OnInit {
       color: color
     });
     toast.present();
+  }
+
+  home(){
+    this.router.navigate(['/home/default']);
   }
 
 }

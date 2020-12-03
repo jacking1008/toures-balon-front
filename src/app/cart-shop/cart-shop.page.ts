@@ -34,6 +34,7 @@ export class CartShopPage implements OnInit {
     let sessionId = sessionStorage.getItem('idUser');
     this.cartSrv.delete(sessionId,item.idProduct).subscribe( () => {
         this.getCart();
+        document.getElementById('my_cart').innerHTML = this.cartItems.length.toString();
       }
     );
   }
@@ -43,6 +44,7 @@ export class CartShopPage implements OnInit {
     let sessionId = sessionStorage.getItem('idUser');
     this.cartSrv.modify(sessionId, item).subscribe( () => {
       this.getCart();
+      document.getElementById('my_cart').innerHTML = this.cartItems.length.toString();
     });
   }
 
