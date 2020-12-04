@@ -13,9 +13,9 @@
         </ion-col>
         <ion-col size-md="4">
           <ion-item lines="none">
-              <img src="assets/icon/credit-card/visa.png" class="credit_card">
-              <img src="assets/icon/credit-card/master.png"class="credit_card">
-              <img src="assets/icon/credit-card/amex.png" class="credit_card">
+              <img [style.opacity]="visaBlur" src="assets/icon/credit-card/visa.png" class="credit_card">
+              <img [style.opacity]="masterCardBlur" src="assets/icon/credit-card/master.png"class="credit_card">
+              <img [style.opacity]="amexBlur" src="assets/icon/credit-card/amex.png" class="credit_card">
           </ion-item>
         </ion-col>
       </ion-row>
@@ -23,7 +23,7 @@
         <ion-col size-md="12">
           <ion-item class="field">
             <ion-label position="stacked">Número de Tajeta</ion-label>
-            <ion-input name="number" formControlName="number" type="numeric"></ion-input>
+            <ion-input name="number" formControlName="number" type="number" (ionChange)="validateCard($event.target.value)"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -47,7 +47,7 @@
         <ion-col size-md="4">
           <ion-item class="field">
             <ion-label position="stacked">CVV</ion-label>
-            <ion-input name="cvv" formControlName="cvv" type="numeric"></ion-input>
+            <ion-input name="cvv" formControlName="cvv" type="number"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -74,7 +74,7 @@
   <ion-item lines="none">
     <ion-item class="field box_container" >
       <ion-label position="stacked">Valor</ion-label>
-      <ion-input value="{{ value }}" readonly></ion-input>
+      <ion-input value="{{ rtaBill.valor }}" readonly></ion-input>
     </ion-item>
   </ion-item>
   <ion-item lines="none">
@@ -83,5 +83,5 @@
       <ion-input value="{{ rtaBill.nroTransaccion }}" readonly></ion-input>
     </ion-item>
   </ion-item>
-  <ion-button class="box_container home_btn" color="primary" (click)="home()">SEGUIR COMPRANDO</ion-button>
+  <ion-button class="box_container home_btn" color="primary" (click)="home()">FINALIZAR</ion-button>
 </ion-content>

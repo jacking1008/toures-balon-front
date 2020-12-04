@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PayComponent } from '../components/pay/pay.component';
 import { Cart } from '../models/cart';
+import { ProductItem } from '../models/product-item';
 
 @Component({
   selector: 'app-payment',
@@ -32,10 +33,26 @@ export class PaymentPage implements OnInit {
     const modal = await this.modalController.create({
       component: PayComponent,
       componentProps: {
-        //value: this.cartInfo.total
+        value: this.getProductList()
       }
     });
     return await modal.present();
+  }
+
+  getProductList(){
+    return this.toPay.map( c => {
+      return this.getProductItem(c)
+     });
+  }
+
+  getProductItem(c:Cart){
+    let x = new ProductItem();
+    x.id = parseInt(c.idProduct);
+    x.providerId = parseInt(c.idProvider);
+    x.number = c.quantity;
+    x.unitValue = c.unitPrice;
+    x.total = c.quantity * c.unitPrice;
+    return x;
   }
 
 }

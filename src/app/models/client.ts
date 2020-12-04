@@ -6,4 +6,5 @@ export class Client {
     age: number;
     gender: string;
     userType: string;
+    email: string;
 }

@@ -4,4 +4,5 @@ export class UserPayment {
     firstName: string;
     lastName: string;
     email: string;
+    categoria: string;
 }
