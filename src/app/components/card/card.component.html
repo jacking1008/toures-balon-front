@@ -27,7 +27,7 @@
         <ion-badge color="light">{{ getFormatPrice(information.price) }}</ion-badge>
       </ion-row>
       <ion-row>
-        <ion-button color="primary" size= "small" class="buy_btn" routerLink="/home/detail/{{information.category}}/{{information.id}}">VER DETALLE</ion-button>
+        <ion-button color="primary" size= "small" class="buy_btn" routerLink="/home/detail" (click)="detailed()" >VER DETALLE</ion-button>
       </ion-row>
     </ion-grid>
   </ion-card-content>

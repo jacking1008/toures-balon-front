@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { LoginComponent } from '../login/login.component';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,9 @@ export class HeaderComponent implements OnInit {
     private toastController: ToastController,
     private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.validateSession();
+  }
 
   async presentLoginModal() {
     const modal = await this.loginController.create({
@@ -31,8 +34,15 @@ export class HeaderComponent implements OnInit {
     return await modal.present();
   }
 
+  async presentRegisterModal() {
+    const modal = await this.loginController.create({
+      component: SignUpComponent
+    });
+    return await modal.present();
+  }
+
   validateSession(){
-    let user = sessionStorage.getItem('userId');
+    let user = sessionStorage.getItem('idUser');
     let token = sessionStorage.getItem('token');
     if( user != undefined && user != null && 
         token != undefined && token != null ){
@@ -41,8 +51,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut(){
-    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('idUser');
     sessionStorage.removeItem('token');
+    sessionStorage.clear();
     this.session = false;
     this.presentToast('Gracias, vuelve pronto!','success');
   }

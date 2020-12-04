@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    debugger
     let auth = new Login();
     auth.userName = this.form.value.user;
     auth.password = this.form.value.password;
@@ -51,6 +50,7 @@ export class LoginComponent implements OnInit {
       this.dismiss();
       sessionStorage.setItem('idUser',rta.idUser);
       sessionStorage.setItem('token',rta.token);
+      sessionStorage.setItem('userType',rta.userType);
     })
   }
 

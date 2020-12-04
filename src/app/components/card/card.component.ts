@@ -1,8 +1,5 @@
-import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit, Input, Host } from '@angular/core';
-import { timingSafeEqual } from 'crypto';
+import { Component, OnInit, Input } from '@angular/core';
 import { CurrencyFormat } from 'src/app/global/currency-format';
-import { HomePage } from 'src/app/home/home.page';
 import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -39,7 +36,6 @@ export class CardComponent implements OnInit {
   }
 
   addToCart(){
-    debugger
     let item = new Cart();
     item.idProduct = this.information.id_product.toString();
     item.name = this.information.title;
@@ -48,13 +44,19 @@ export class CardComponent implements OnInit {
     item.unitPrice = this.information.price;
     item.idProvider = this.information.id_provider != undefined ? this.information.id_provider.toString() : null;
 
-    let sessionId = sessionStorage.getItem('idUser');
-    this.cartSrv.modify(sessionId, item).subscribe( () => {
-      this.cartSrv.search(sessionId).subscribe( rta => {
+    let sessionId =  sessionStorage.getItem('idUser');
+    let addressIp = sessionStorage.getItem('ip-address');
+    let data = sessionId != null && sessionId != undefined ? sessionId : addressIp;
+    this.cartSrv.modify(data, item).subscribe( () => {
+      this.cartSrv.search(data).subscribe( rta => {
         document.getElementById('my_cart').innerHTML = rta.length.toString();
       });
     });
   
+  }
+
+  detailed(){
+    sessionStorage.setItem('item-to-detail',JSON.stringify(this.information));
   }
 
 }

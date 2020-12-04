@@ -17,7 +17,6 @@ export class CartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger
     if(this.cartInfo == undefined) this.cartInfo = [];
   }
 
