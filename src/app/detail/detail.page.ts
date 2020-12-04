@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import {Router } from '@angular/router';
 import { CurrencyFormat } from '../global/currency-format';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -37,7 +37,8 @@ export class DetailPage implements OnInit {
   constructor(
     public modalController: ModalController,
     private formbld: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) { 
     this.form = this.formbld.group({
       locality: ["", [Validators.required]],
@@ -63,9 +64,14 @@ export class DetailPage implements OnInit {
   }
 
   order(){
-    debugger
-    sessionStorage.setItem('to-pay',JSON.stringify([this.getCart()]));
-    this.router.navigate(['/payment']);
+    let sessionId = sessionStorage.getItem('idUser');
+    let token = sessionStorage.getItem('token');
+    if( sessionId != undefined && sessionId != null && token != undefined && token != null){
+      sessionStorage.setItem('to-pay',JSON.stringify([this.getCart()]));
+      this.router.navigate(['/payment']);
+    } else{
+      this.presentToast('No eres usuario registrado','warning');
+    }
   }
 
   getFormattedPrice(value:number){
@@ -103,6 +109,16 @@ export class DetailPage implements OnInit {
       }
     } )
     return x;
+  }
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
+      color: color
+    });
+    toast.present();
   }
 
 }

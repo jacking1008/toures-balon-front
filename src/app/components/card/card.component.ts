@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { CurrencyFormat } from 'src/app/global/currency-format';
 import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
@@ -15,7 +16,8 @@ export class CardComponent implements OnInit {
   star = "100%";
 
   constructor(
-    private cartSrv :CartService
+    private cartSrv :CartService,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class CardComponent implements OnInit {
     this.cartSrv.modify(data, item).subscribe( () => {
       this.cartSrv.search(data).subscribe( rta => {
         document.getElementById('my_cart').innerHTML = rta.length.toString();
+        this.presentToast('Producto / Plan agregado al carrito','primary')
       });
     });
   
@@ -57,6 +60,16 @@ export class CardComponent implements OnInit {
 
   detailed(){
     sessionStorage.setItem('item-to-detail',JSON.stringify(this.information));
+  }
+
+  async presentToast(message,type) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
+      color: type
+    });
+    toast.present();
   }
 
 }

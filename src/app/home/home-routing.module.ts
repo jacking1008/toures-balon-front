@@ -16,26 +16,6 @@ const routes: Routes = [
         loadChildren: () => import('../cart-shop/cart-shop.module').then( m => m.CartShopPageModule)
       },
       {
-        path: 'plan',
-        loadChildren: () => import('../plans/plans.module').then( m => m.PlansPageModule)
-      },
-      {
-        path: 'event',
-        loadChildren: () => import('../events/events.module').then( m => m.EventsPageModule)
-      },
-      {
-        path: 'transport',
-        loadChildren: '../plans/plans.module#PlansPageModule'
-      },
-      {
-        path: 'hotel',
-        loadChildren: '../plans/plans.module#PlansPageModule'
-      },
-      {
-        path: 'cart',
-        loadChildren: '../plans/plans.module#PlansPageModule'
-      },
-      {
         path: 'detail',
         loadChildren: () => import('../detail/detail.module').then( m => m.DetailPageModule)
       }

@@ -64,6 +64,8 @@ export class AuthInterceptorService implements HttpInterceptor {
             this.messagesExtern();
           } else if (err.status == 501) {
             this.messagesExtern();
+          } else if (err.status == 501) {
+            this.presentToast('Error al realizar el pago, intente más tarde','error');
           }
         }
       )
