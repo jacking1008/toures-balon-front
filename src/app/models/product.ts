@@ -11,5 +11,6 @@ export class Product {
     status: boolean;
     user_rating: number;
     price: number;
+    detail: any;
     
 }

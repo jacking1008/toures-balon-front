@@ -18,7 +18,13 @@
         "category": "show",
         "status": true,
         "user_rating": 5,
-        "price": 200000.12
+        "price": 200000.12,
+        "detail" : {
+            "capacity": 24, 
+            "city": "Bogotá",
+            "date": "hoy",
+            "place": "place1"
+        }
     },
     {
         "id_product": 1000003,

@@ -36,7 +36,7 @@ const routes: Routes = [
         loadChildren: '../plans/plans.module#PlansPageModule'
       },
       {
-        path: 'detail/:type/:id',
+        path: 'detail',
         loadChildren: () => import('../detail/detail.module').then( m => m.DetailPageModule)
       }
     ]

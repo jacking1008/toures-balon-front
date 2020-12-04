@@ -20,7 +20,6 @@ export class PaymentPage implements OnInit {
   }
 
   ngOnInit() {
-    debugger
     this.toPay = JSON.parse(sessionStorage.getItem('to-pay'));
   }
 

@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ModalComponent } from '../components/modal/modal.component';
-import { ShowService } from '../services/show.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DetailShow } from '../models/detail-show';
-import { Locality } from '../models/locality';
+import {Router } from '@angular/router';
 import { CurrencyFormat } from '../global/currency-format';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Cart } from '../models/cart';
-import { CartItem } from '../models/cart-item';
+import { Product } from '../models/product';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-detail',
@@ -17,15 +14,28 @@ import { CartItem } from '../models/cart-item';
 })
 export class DetailPage implements OnInit {
 
+  star = "100%";
   form: FormGroup;
 
-  private detail: DetailShow = new DetailShow();
-  private localidad: Locality = new Locality();
+  product: Product;
+  items: Item[];
+  icons = [{ name: 'title', trad: 'Nombre', icon: 'albums-outline'},
+          { name: 'description', trad: 'Descripción', icon: 'barcode-outline'},
+          { name: 'price', trad: 'Valor U.', icon: 'logo-usd'},
+          { name: 'capacity', trad: 'Capacidad', icon: 'people-circle-outline'},
+          { name: 'city', trad: 'Ciudad', icon: 'map-outline'},
+          { name: 'date', trad: 'Fecha', icon: 'calendar-outline'},
+          { name: 'place', trad: 'Lugar', icon: 'pin-outline'},
+          { name: 'from', trad: 'Desde', icon: 'airplane-outline'},
+          { name: 'to', trad: 'Hasta', icon: 'airplane-outline'},
+          { name: 'luggage_type', trad: 'Equipaje', icon: 'bag-outline'},
+          { name: 'stopover', trad: 'Paradas', icon: 'stopwatch-outline'},
+          { name: 'guests', trad: 'Huespedes', icon: 'people-outline'},
+          { name: 'host_description', trad: 'Desc. Host', icon: 'code-outline'},];
+
 
   constructor(
     public modalController: ModalController,
-    private route: ActivatedRoute,
-    private eventSrv : ShowService,
     private formbld: FormBuilder,
     private router: Router
   ) { 
@@ -36,51 +46,63 @@ export class DetailPage implements OnInit {
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.eventSrv.cargarById(parseInt(id)).subscribe( rta => {
-      this.detail = rta;
-    })
+    this.product = JSON.parse(sessionStorage.getItem('item-to-detail'));
+    console.log(this.product);
+    this.items = this.getItems(this.product);
+    this.star = this.getStarRating(this.product.user_rating);
+    debugger
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: ModalComponent,
-      componentProps: {
-        image: this.detail.imageLocalities
-      }
-    });
-    return await modal.present();
-  }
-
-  onSelectChange(selectedValue: any) {
-    this.localidad = this.detail.localities.find( e => e.id == selectedValue.target.value);
-  }
-
-  getDate(){
-    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    let dTemp = new Date(this.detail.date);
-    return dTemp != undefined ? dTemp.toLocaleDateString("es-CO",options) : "";
-  }
-
-  getHours(){
-    let dTemp = new Date(this.detail.date);
-    return dTemp != undefined ? dTemp.getHours() + ":" + dTemp.getMinutes() : "";
-  }
-
-  getFormattedPrice(){
-    return this.localidad.price != undefined ? CurrencyFormat.convertFormatting('USD', this.localidad.price) : "";
+  getStarRating(rate:number){
+    let stringNumberArray = (rate*100/5).toString().split(".");
+    let finalNumber = stringNumberArray[0];
+    if(stringNumberArray[1] != undefined && stringNumberArray[1] != "0"){
+      finalNumber += stringNumberArray[1].charAt(0);
+    }
+    return finalNumber + "%";
   }
 
   order(){
-    let item:CartItem = new CartItem();
-    item.id = this.detail.id;
-    item.image = this.detail.image;
-    item.name = this.detail.name;
-    item.subName = this.localidad.name;
-    item.price = this.localidad.price;
-    item.quantity = this.form.controls.quantity.value;
-    sessionStorage.setItem('cart',JSON.stringify([item]));
+    debugger
+    sessionStorage.setItem('to-pay',JSON.stringify([this.getCart()]));
     this.router.navigate(['/payment']);
+  }
+
+  getFormattedPrice(value:number){
+    return CurrencyFormat.convertFormatting('USD', value);
+  }
+
+  getCart(){
+    let cart = new Cart();
+    cart.idProduct = this.product.id_product.toString();
+    cart.idProvider = this.product.id_provider;
+    cart.image = this.product.image;
+    cart.name = this.product.title;
+    cart.quantity = 1;
+    cart.unitPrice = this.product.price;
+    return cart;
+  }
+
+  getItems(product: any){
+    let x = [];
+    Object.keys(product).forEach( k => {
+      let xTemp = product[k];
+      if( typeof xTemp === 'object' ){
+        Array.prototype.push.apply(x,this.getItems(xTemp));
+      }
+      let yTemp = this.icons.find( e => e.name == k );
+      if(yTemp != null && yTemp != undefined){
+        let itemTemp = new Item();
+        itemTemp.name = yTemp.trad;
+        itemTemp.icon = yTemp.icon;
+        itemTemp.value = xTemp;
+        if ( k === 'price'){
+          itemTemp.value = CurrencyFormat.convertFormatting('USD',xTemp);
+        }
+        x.push(itemTemp); 
+      }
+    } )
+    return x;
   }
 
 }

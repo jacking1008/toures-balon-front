@@ -1,84 +1,26 @@
 <ion-grid class="busqueda">
   <ion-row>
       <ion-col size-sm=12 size-md=6 class="image_info">
-        <img src="{{ detail.image }}" class="image_item" />
-        <ion-button color="light" size="small" (click)="presentModal()">Ver Mapa de Localidades</ion-button>
+        <img src="{{ product.image }}" class="image_item" />
+        <div class="star-rating">
+          <span [style.width]="star"></span>
+        </div>
+        <ion-button color="primary" class="order_btn" (click)="order()" >RESERVAR</ion-button>
+        <!--<ion-button color="light" size="small" (click)="presentModal()">Ver Mapa de Localidades</ion-button>-->
       </ion-col>
       <ion-col size-sm=12 size-md=6>
         <ion-list inset=true lines="none">
-          <ion-list-header color="primary" class="title_info">
-            <ion-label class="title_des">{{ detail.name }}</ion-label>
+          <ion-list-header color="light" class="title_info">
+            <ion-label class="title_des">{{ product.title }}</ion-label>
           </ion-list-header>
-          <ion-item>
-            <ion-icon name="pin-outline" slot="start"></ion-icon>
-            <ion-label>Lugar: </ion-label>
-            {{ detail.place }}
-          </ion-item>
-          <ion-item>
-            <ion-icon name="map-outline" slot="start"></ion-icon>
-            <ion-label>Ciudad: </ion-label>
-            {{ detail.city }}
-          </ion-item>
-          <ion-item>
-            <ion-icon name="calendar-outline" slot="start"></ion-icon>
-            <ion-label>Fecha: </ion-label>
-            {{ getDate() }}
-          </ion-item>
-          <ion-item>
-            <ion-icon name="time-outline" slot="start"></ion-icon>
-            <ion-label>Hora: </ion-label>
-            {{ getHours() }}
-          </ion-item>
-          <ion-item>
-            <ion-icon name="copy-outline" slot="start"></ion-icon>
-            <ion-label>Categoría: </ion-label>
-            {{ detail.category }}
-          </ion-item>
-          <ion-item>
-            <ion-icon name="people-circle-outline" slot="start"></ion-icon>
-            <ion-label>Aforo: </ion-label>
-            {{ detail.capacity }}
+          <ion-item *ngFor='let item of items'>
+            <ion-icon name="{{ item.icon }}" slot="start"></ion-icon>
+            <ion-label>
+              <h2>{{ item.name }}</h2>
+              <p>{{ item.value }}</p>
+            </ion-label>
           </ion-item>
         </ion-list>
       </ion-col>
   </ion-row>
-  <ion-card>
-    <form [formGroup]="form" novalidate>
-      <ion-row class="box_buy">
-        <ion-col size-sm=12 size-md=3>
-          <ion-list>
-            <ion-item>
-              <ion-label position="stacked">Localidad:</ion-label>
-              <ion-select class="input_data" (ionChange)="onSelectChange($event)" formControlName="locality">
-                <ion-select-option *ngFor="let key of detail.localities" value="{{key.id}}">{{ key.name }}</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col size-sm=12 size-md=3>
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">Valor:</ion-label>
-              <ion-input value="{{ getFormattedPrice() }}" class="input_data" readonly></ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col size-sm=12 size-md=3>
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">Cantidad:</ion-label>
-              <ion-input formControlName="quantity" class="input_data"></ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-        <ion-col size-sm=12 size-md=3>
-          <ion-list lines="none">
-            <ion-item>
-              <ion-button color="primary" size="default" style="width: 100%;" [disabled]="form.invalid" (click)="order()">Ordenar</ion-button>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-    </form>
-  </ion-card>
 </ion-grid>

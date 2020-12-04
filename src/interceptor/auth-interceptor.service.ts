@@ -27,8 +27,8 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   }
 
-  messagesInter() {
-    this.statusWarning = this.presentToast('Credenciales Invalidas! Intente Nuevamente!','warning');
+  messagesInter(err) {
+    this.statusWarning = this.presentToast(err,'warning');
   }
   messagesExtern() {
     this.statusError = this.presentToast('Error Interno ! Intente Mas Tarde!','error');
@@ -58,7 +58,8 @@ export class AuthInterceptorService implements HttpInterceptor {
           this.loadingCtrl.dismiss();
 
           if (err.status === 401) {
-            this.messagesInter();
+            debugger
+            this.messagesInter(err.error);
           } else if (err.status == 500) {
             this.messagesExtern();
           } else if (err.status == 501) {

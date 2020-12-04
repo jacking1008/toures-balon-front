@@ -24,15 +24,15 @@ export class CartShopPage implements OnInit {
   }
 
   getCart(){
-    let sessionId = sessionStorage.getItem('idUser');
-    this.cartSrv.search(sessionId).subscribe( rta => {
+    let data = this.validateData();
+    this.cartSrv.search(data).subscribe( rta => {
       this.cartItems = rta;
     })
   }
 
   deleteCart(item:Cart){
-    let sessionId = sessionStorage.getItem('idUser');
-    this.cartSrv.delete(sessionId,item.idProduct).subscribe( () => {
+    let data = this.validateData();
+    this.cartSrv.delete(data,item.idProduct).subscribe( () => {
         this.getCart();
         document.getElementById('my_cart').innerHTML = this.cartItems.length.toString();
       }
@@ -41,8 +41,8 @@ export class CartShopPage implements OnInit {
 
   modifyCart(item:Cart, value:string){
     item.quantity = parseInt(value);
-    let sessionId = sessionStorage.getItem('idUser');
-    this.cartSrv.modify(sessionId, item).subscribe( () => {
+    let data = this.validateData();
+    this.cartSrv.modify(data, item).subscribe( () => {
       this.getCart();
       document.getElementById('my_cart').innerHTML = this.cartItems.length.toString();
     });
@@ -59,6 +59,12 @@ export class CartShopPage implements OnInit {
   reservar(){
     sessionStorage.setItem('to-pay',JSON.stringify(this.cartItems));
     this.router.navigate(['/payment']);
+  }
+
+  validateData(){
+    let sessionId = sessionStorage.getItem('idUser');
+    let addressIp = sessionStorage.getItem('ip-address');
+    return sessionId != null && sessionId != undefined ? sessionId : addressIp;
   }
 
 }

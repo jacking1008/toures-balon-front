@@ -23,7 +23,7 @@
     <ion-tab-button tab="cart-shop">
       <ion-icon name="cart-outline"></ion-icon>
       <ion-label>Carrito</ion-label>
-      <ion-badge [attr.disabled]="cart > 0" id="my_cart">{{ cart }}</ion-badge>
+      <ion-badge [hidden]="validateCart()" id="my_cart">{{ cart }}</ion-badge>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

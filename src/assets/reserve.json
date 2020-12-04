@@ -1,0 +1,24 @@
+{
+    "usuario": {
+        "id": 1010234755,
+        "firstName": "Juan",
+        "lastName": "Reyes",
+        "email": "jsvq85@gmail.com"
+    },
+    "pagoResponse": {
+        "referencia": "123",
+        "mensaje": "Pagado Satisfactoriamente.",
+        "valor": "15000",
+        "nroTransaccion": "123"
+    },
+    "productList": [
+        {
+            "id": 80,
+            "providerId": 2,
+            "number": 2,
+            "unitValue": 2000,
+            "total": 4000
+        }
+    ],
+    "reservaStatus": "IN_PROCESS"
+}

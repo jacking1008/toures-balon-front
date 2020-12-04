@@ -9,16 +9,20 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class ClientService {
 
   constructor(
     private http: HttpClient,
   ) {
   }
 
-  auth(user: Login): Observable<Auth> {
+  create(client: Client, user: User): Observable<Auth> {
     //const path = `${environment.url}/espectaculo`;
-    const path = `https://localhost:38723/api/User`;
-    return  this.http.post<Auth>(path,user);
+    const path = `https://localhost:38723/api/Client`;
+    return  this.http.post<Auth>(path,{
+      client: client,
+      user: user
+    });
   }
+
 }

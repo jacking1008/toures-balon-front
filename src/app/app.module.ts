@@ -15,9 +15,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PayComponent } from './components/pay/pay.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthInterceptorService } from 'src/interceptor/auth-interceptor.service';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, PayComponent],
+  declarations: [AppComponent, LoginComponent, PayComponent, SignUpComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, CommonModule, ReactiveFormsModule],
   providers: [
