@@ -52,7 +52,7 @@ export class SignUpComponent implements OnInit {
     client.lastName = this.form.value.lastName;
     client.age = this.form.value.age;
     client.gender = this.form.value.gender;
-    client.userType = "PRUEBA";
+    client.userType = "PLATEADO";
     client.email = this.form.value.email;
     let user = new User();
     user.idClient = client.idClient;

@@ -18,7 +18,7 @@ export class ReserveService {
     //const path = `${environment.url}/espectaculo`;
     //const path = `assets/reserve.json`;
     debugger
-    const path = `http://cf35b7d42d86.ngrok.io/api/v1/reserva/`
+    const path = `http://2b04f50d6363.ngrok.io/api/v1/reserva/`
     //return  this.http.get<ReserveResponse>(path);
     return  this.http.post<ReserveResponse>(path,request);
   }

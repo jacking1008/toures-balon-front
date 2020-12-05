@@ -19,12 +19,12 @@ export class DefaultPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.text = "promociones";
     this.search();
   }
 
   search(){
-    this.productSrv.search(this.text).subscribe( rta => {
+    let text = (this.text != undefined && this.text != null ) ? this.text : "promoción";
+    this.productSrv.search(text).subscribe( rta => {
       this.products = rta.products;
     })
   }

@@ -16,7 +16,7 @@ export class ProductService {
 
   search(queryParam: string): Observable<RtaSolr> {
     //const path = `${environment.url}/espectaculo`;
-    const path = `http://706d77741412.ngrok.io/products?q=${queryParam}`;
+    const path = `http://d680301490a5.ngrok.io/products?q=${queryParam}`;
     //const path = `assets/products.json`;
     return this.http.get<RtaSolr>(path);
   }

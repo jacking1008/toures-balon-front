@@ -18,7 +18,7 @@ export class ClientService {
 
   getById(idClient: string, token: string): Observable<Client> {
     //const path = `${environment.url}/espectaculo`;
-    const path = `https://localhost:38723/api/Client/${idClient}`;
+    const path = `http://localhost:38723/api/Client/${idClient}`;
     return  this.http.get<Client>(path,{
       headers: new HttpHeaders()
         .set('Authorization',  `${token}`)
@@ -28,7 +28,7 @@ export class ClientService {
   create(client: Client, user: User): Observable<Auth> {
     debugger
     //const path = `${environment.url}/espectaculo`;
-    const path = `https://localhost:38723/api/Client`;
+    const path = `http://localhost:38723/api/Client`;
     return  this.http.post<Auth>(path,{
       client: client,
       user: user

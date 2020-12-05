@@ -18,7 +18,7 @@ export class LoginService {
 
   auth(user: Login): Observable<Auth> {
     //const path = `${environment.url}/espectaculo`;
-    const path = `https://localhost:38723/api/User`;
+    const path = `http://localhost:38723/api/User`;
     return  this.http.post<Auth>(path,user);
   }
 }
