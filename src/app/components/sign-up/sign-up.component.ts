@@ -24,6 +24,7 @@ export class SignUpComponent implements OnInit {
   ) { 
     this.form = this.formbld.group({
       idClient: ["", [Validators.required]],
+      email: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       lastName: ["", [Validators.required]],
       age: ["", [Validators.required]],

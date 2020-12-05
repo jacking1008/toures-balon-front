@@ -19,13 +19,13 @@ export class DefaultPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.text = ""
+    this.text = "promociones";
     this.search();
   }
 
   search(){
     this.productSrv.search(this.text).subscribe( rta => {
-      this.products = rta;
+      this.products = rta.products;
     })
   }
 

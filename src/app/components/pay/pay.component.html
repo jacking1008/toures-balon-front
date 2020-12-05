@@ -58,7 +58,7 @@
   </ion-grid>
 </ion-content>
 
-<ion-content *ngIf="screen === 'Bill'" class="box_container">
+<ion-content *ngIf="screen === 'Bill' && rtaBill" class="box_container">
   <ion-item lines="none">
     <img src="assets/icon/happy_pay.png" class="payment">
   </ion-item>
@@ -83,5 +83,13 @@
       <ion-input value="{{ rtaBill.nroTransaccion }}" readonly></ion-input>
     </ion-item>
   </ion-item>
+  <ion-button class="box_container home_btn" color="primary" (click)="home()">FINALIZAR</ion-button>
+</ion-content>
+
+<ion-content *ngIf="screen === 'Bill' && (rtaBill === undefined || rtaBill === null ) " class="box_container">
+  <ion-item lines="none">
+    <img src="assets/icon/warning-pay.png" class="payment">
+  </ion-item>
+  <div class="box_container home_btn">Le informamos que su reserva necesita aprobacion manual. Cuando esta sea realizada le notificaremos.</div>
   <ion-button class="box_container home_btn" color="primary" (click)="home()">FINALIZAR</ion-button>
 </ion-content>

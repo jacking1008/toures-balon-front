@@ -26,6 +26,7 @@ export class ClientService {
   }
 
   create(client: Client, user: User): Observable<Auth> {
+    debugger
     //const path = `${environment.url}/espectaculo`;
     const path = `https://localhost:38723/api/Client`;
     return  this.http.post<Auth>(path,{

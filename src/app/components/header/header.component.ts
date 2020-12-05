@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
     sessionStorage.removeItem('token');
     sessionStorage.clear();
     this.session = false;
+    this.home();
     this.presentToast('Gracias, vuelve pronto!','success');
   }
 

@@ -31,7 +31,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     this.statusWarning = this.presentToast(err,'warning');
   }
   messagesExtern() {
-    this.statusError = this.presentToast('Error Interno ! Intente Mas Tarde!','error');
+    this.statusError = this.presentToast('Error Interno ! Intente Mas Tarde!','danger');
   }
 
   /**
@@ -61,11 +61,11 @@ export class AuthInterceptorService implements HttpInterceptor {
             debugger
             this.messagesInter(err.error);
           } else if (err.status == 500) {
-            this.messagesExtern();
+            this.presentToast('Error al realizar el pago, intente más tarde','danger');
           } else if (err.status == 501) {
             this.messagesExtern();
           } else if (err.status == 501) {
-            this.presentToast('Error al realizar el pago, intente más tarde','error');
+            this.presentToast('Error al realizar el pago, intente más tarde','danger');
           }
         }
       )

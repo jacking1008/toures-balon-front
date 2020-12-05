@@ -5,6 +5,7 @@
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
         "image": "https://ep00.epimg.net/deportes/imagenes/2017/11/15/actualidad/1510775807_665813_1510781210_noticia_normal.jpg",
         "category": "plan",
+        "id_provider": "00001",
         "status": true,
         "user_rating": 3.5,
         "price": 500000.12

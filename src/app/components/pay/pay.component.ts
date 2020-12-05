@@ -78,14 +78,15 @@ export class PayComponent implements OnInit {
     let payment = new Payment();
     payment.idConvenio = this.convenio;
     payment.cardType = this.cardType;
-    payment.cardDate = this.form.value.month + this.form.value.year;
+    payment.cardDate = this.form.value.month + "-" + this.form.value.year;
     payment.cardNumber = parseInt(this.form.value.number);
     payment.cardOwnerId = usuario.id;
     payment.cvv = parseInt(this.form.value.cvv);
     payment.due = 24;
     payment.cardOwnerName = this.form.value.name;
     reserva.payment = payment;
-    reserva.referencia = Math.floor(Math.random()*10000000);
+    //reserva.referencia = Math.floor(Math.random()*1000);
+    reserva.referencia = 123;
     reserva.total = this.value.map( r => { return r.total } ).reduce(this.reducer);
     reserva.productList = this.value;
 
